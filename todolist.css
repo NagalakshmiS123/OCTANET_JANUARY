@@ -1,0 +1,147 @@
+.img{
+    padding: 0px;
+    margin:0px;
+
+}
+.simg{
+    width: 50%;
+    top: 50%;
+    left: 73%;
+    align-content: center;
+}
+
+.container{
+    width: 50%;
+    top: 50%;
+    left: 73%;
+    
+    background:lightgray;
+    border-radius: 10px;
+    min-width: 450px;
+    position: absolute;
+    min-height: 100px;
+    transform: translate(-50%,-50%);
+}
+#newtask{
+    position: relative;
+    padding: 30px 20px;
+}
+#newtask input{
+    width: 70%;
+    height: 40px;
+    padding: 12px;
+    color: #111111;
+    font-weight: 500;
+    position: relative;
+    border-radius: 5px;
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    border: 2px solid #d1d3d4;
+}
+
+#newtask input:focus{
+    outline: none;
+    border-color: #08090a;
+}
+#newtask button{
+    position: relative;
+    float: right;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: #919396;
+    border: none;
+    color:white;
+    cursor: pointer;
+    outline: none;
+    width: 20%;
+    height: 45px;
+    border-radius: 5px;
+    font-family: 'Poppins',sans-serif;
+}
+#tasks{
+    border-radius: 10px;
+    width: 70%;
+    position: relative;
+    background-color:lightgray;
+    padding: 30px 20px;
+    margin-top: 10px;
+}
+
+.task{
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #939697;
+    cursor: pointer;
+    background-color: #c5e1e6;
+    height: 50px;
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    display: flex;
+}
+.task span{
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+.task button{
+    background-color: #949596;
+    color:#111111;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    height: 100%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+<body>
+    
+    
+   <div class="img">
+    <img src="https://t3.ftcdn.net/jpg/02/59/31/70/360_F_259317013_nJJaBgGGzvXMd6cAyLd6yMJtbdnd61wk.jpg" alt=""
+    width="650" height="750">
+</div><br>
+
+<div class="container">
+    <center><div class="simg">
+        <h2>Tasks...</h2> <img src="https://st3.depositphotos.com/1020091/12999/v/950/depositphotos_129990550-stock-illustration-exercise-book-with-pen-icon.jpg" alt=""
+            width="70" height="65" >
+    </div></center>
+
+     <div id="newtask">
+        <input type="text" placeholder="Add Tasks">
+        <button id="push">Add</button>
+    </div>
+
+    <div id="tasks"></div>
+    
+
+</div>
+</body>
+
+document.querySelector('#push').onclick = function(){
+    if(document.querySelector('#newtask input').value.length == 0){
+        alert("Kindly Enter Task Name!!!!")
+    }
+
+    else{
+        document.querySelector('#tasks').innerHTML += `
+            <div class="task">
+                <span id="taskname">
+                    ${document.querySelector('#newtask input').value}
+                </span>
+                <button class="delete">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+        `;
+
+        var current_tasks = document.querySelectorAll(".delete");
+        for(var i=0; i<current_tasks.length; i++){
+            current_tasks[i].onclick = function(){
+                this.parentNode.remove();
+            }
+        }
+    }
+}
